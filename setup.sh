@@ -18,14 +18,14 @@ echo "============================================"
 
 # ── Day1 ─────────────────────────────────────────
 echo ""
-echo "[1/4] Day1 파일 배치 중..."
+echo "[1/3] Day1 파일 배치 중..."
 mkdir -p "$DAY1_DEST/src" "$DAY1_DEST/data" "$DAY1_DEST/outputs" "$DAY1_DEST/logs"
 cp -r "$DAY1_SRC/src/"* "$DAY1_DEST/src/"
 echo "  ✓ edge-ai-day1/src/ 완료"
 
 # ── Day2 코드 ────────────────────────────────────
 echo ""
-echo "[2/4] Day2 코드 파일 배치 중..."
+echo "[2/3] Day2 코드 파일 배치 중..."
 mkdir -p "$DAY2_DEST/src" \
          "$DAY2_DEST/data" \
          "$DAY2_DEST/models" \
@@ -37,41 +37,9 @@ echo "  ✓ edge-ai-day2/src/ 완료"
 
 # ── Day2 데이터 파일 ──────────────────────────────
 echo ""
-echo "[3/4] 데이터 파일 배치 중..."
+echo "[3/3] 데이터 파일 배치 중..."
 cp -r "$DAY2_SRC/data/"* "$DAY2_DEST/data/"
 echo "  ✓ edge-ai-day2/data/ 완료"
-
-# ── YOLO 모델 다운로드 ────────────────────────────
-echo ""
-echo "[4/4] YOLO11n 모델 확인 중..."
-MODEL_PATH="$DAY2_DEST/models/yolo11n.pt"
-if [ -f "$MODEL_PATH" ]; then
-    echo "  ✓ yolo11n.pt 이미 존재 — 건너뜀"
-else
-    echo "  yolo11n.pt 다운로드 중 (ultralytics 사용)..."
-    python3 - <<'PYEOF'
-from ultralytics import YOLO
-import shutil, os
-model = YOLO("yolo11n.pt")   # ~/.cache/ultralytics/ 에 다운로드
-src = os.path.expanduser("~/.cache/ultralytics/assets/yolo11n.pt")
-# ultralytics가 현재 디렉토리에 저장하는 경우도 대비
-if not os.path.exists(src):
-    src = "yolo11n.pt"
-dst = os.path.expanduser("~/edge-ai-day2/models/yolo11n.pt")
-if os.path.exists(src) and src != dst:
-    shutil.copy(src, dst)
-    print(f"  복사 완료: {dst}")
-elif os.path.exists(dst):
-    print(f"  이미 존재: {dst}")
-PYEOF
-    if [ -f "$MODEL_PATH" ]; then
-        echo "  ✓ yolo11n.pt 준비 완료"
-    else
-        echo "  ⚠ 자동 다운로드 실패. 수동으로 실행하세요:"
-        echo "    cd ~/edge-ai-day2 && python3 -c \"from ultralytics import YOLO; YOLO('yolo11n.pt')\""
-        echo "    mv yolo11n.pt ~/edge-ai-day2/models/"
-    fi
-fi
 
 # ── 완료 ─────────────────────────────────────────
 echo ""
@@ -88,7 +56,7 @@ echo ""
 echo "   ~/edge-ai-day2/"
 echo "   ├── src/         ← Day3~5 코드"
 echo "   ├── data/        ← JSON, CSV, txt 설정 파일"
-echo "   ├── models/      ← yolo11n.pt"
+echo "   ├── models/      ← yolo11n.pt (별도 복사 필요)"
 echo "   └── outputs/"
 echo "       ├── benchmarks/"
 echo "       ├── captures/"
