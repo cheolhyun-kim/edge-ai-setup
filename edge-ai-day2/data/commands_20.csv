@@ -1,0 +1,21 @@
+﻿text,expected_action,expected_target
+가위 찾아줘,find_object,scissors
+가위가 어디 있어?,find_object,scissors
+바위 보여줘,find_object,rock
+보 찾아봐,find_object,paper
+컵 어디 있어?,find_object,cup
+물병 찾아줘,find_object,bottle
+화면에서 가위를 찾아줘,find_object,scissors
+주먹 모양 찾아줘,find_object,rock
+손바닥 보여줘,find_object,paper
+병 좀 찾아줄래?,find_object,bottle
+화면에 뭐가 보여?,list_objects,
+보이는 물체 목록 말해줘,list_objects,
+전부 찾아서 알려줘,list_objects,
+지금 화면에 있는 것들 보여줘,list_objects,
+인식된 물체 다 말해줘,list_objects,
+멋있는 거 찾아줘,unknown,
+맛있는 걸 찾아봐,unknown,
+내가 좋아하는 거 보여줘,unknown,
+왼쪽에 있는 거 해줘,unknown,
+아무거나 찾아줘,unknown,

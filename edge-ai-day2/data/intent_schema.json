@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["find_object", "list_objects", "unknown"],
+      "description": "실행할 동작. find_object=특정 물체 찾기, list_objects=화면 전체 목록, unknown=처리 불가"
+    },
+    "target_ko": {
+      "type": ["string", "null"],
+      "description": "사용자가 말한 대상 (한국어). list_objects/unknown 이면 null"
+    },
+    "target_en": {
+      "type": ["string", "null"],
+      "description": "YOLO class name (영어). list_objects/unknown 이면 null"
+    },
+    "attributes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "색상/위치 등 부가 조건. 없으면 빈 배열 []"
+    },
+    "min_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "탐지 결과 필터링 기준값. 기본 0.35"
+    }
+  },
+  "required": ["action", "target_ko", "target_en"]
+}

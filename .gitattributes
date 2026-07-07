@@ -1,0 +1,21 @@
+# 모든 텍스트 파일 → LF (Linux/Pi 실행 환경 기준)
+* text=auto eol=lf
+
+# 셸 스크립트는 반드시 LF
+*.sh text eol=lf
+
+# Python
+*.py text eol=lf
+
+# 데이터 파일
+*.json text eol=lf
+*.csv text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+
+# 바이너리 파일은 변환 금지
+*.pt binary
+*.onnx binary
+*.jpg binary
+*.png binary
+*.zip binary
