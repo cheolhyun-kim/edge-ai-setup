@@ -18,6 +18,7 @@ from pathlib import Path
 
 import cv2
 from ultralytics import YOLO
+from camera_utils import find_camera
 
 # src/ 기준 프로젝트 루트 (edge-ai-day2/)
 ROOT = Path(__file__).parent.parent
@@ -26,7 +27,7 @@ ROOT = Path(__file__).parent.parent
 def parse_args():
     parser = argparse.ArgumentParser(description="Realtime YOLO basic")
     parser.add_argument("--model",      default=str(ROOT / "models" / "yolo11n.pt"))
-    parser.add_argument("--source",     default="0",
+    parser.add_argument("--source",     default=str(find_camera()),
                         help="카메라 번호(0,1,...) 또는 영상 파일 경로")
     parser.add_argument("--imgsz",      type=int,   default=320)
     parser.add_argument("--conf",       type=float, default=0.35)

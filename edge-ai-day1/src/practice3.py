@@ -4,14 +4,12 @@
 # 실행: python src/practice3.py
 # 종료: 창에서 q 키 입력
 #
-# 주의: GUI 창이 필요합니다
-#   - 모니터를 직접 연결하거나 VNC 사용
-#   - SSH 단독 환경에서는 imshow 가 동작하지 않음
-#     → headless 환경이면 practice2.py 의 저장 방식으로 대체
+# 주의: GUI 창이 필요합니다 (모니터 직접 연결 또는 VNC 사용)
 
 import cv2
+from camera_utils import find_camera
 
-CAMERA_ID = 0  # 카메라 번호가 다르면 여기를 수정
+CAMERA_ID = find_camera()
 
 cap = cv2.VideoCapture(CAMERA_ID)
 

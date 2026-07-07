@@ -24,6 +24,7 @@ import time
 from pathlib import Path
 
 import cv2
+from camera_utils import find_camera
 
 ROOT = Path(__file__).parent.parent
 
@@ -32,8 +33,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Custom dataset capture")
     parser.add_argument("--class",   dest="class_name", required=True,
                         help="클래스 이름 (영문 소문자, 예: scissors)")
-    parser.add_argument("--camera",  type=int, default=0,
-                        help="카메라 번호 (기본: 0)")
+    parser.add_argument("--camera",  type=int, default=find_camera(),
+                        help="카메라 번호 (기본: 자동 감지)")
     parser.add_argument("--width",   type=int, default=640)
     parser.add_argument("--height",  type=int, default=480)
     return parser.parse_args()

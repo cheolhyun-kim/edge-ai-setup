@@ -17,6 +17,7 @@ from pathlib import Path
 
 import cv2
 from ultralytics import YOLO
+from camera_utils import find_camera
 
 ROOT = Path(__file__).parent.parent
 
@@ -24,7 +25,7 @@ ROOT = Path(__file__).parent.parent
 def parse_args():
     parser = argparse.ArgumentParser(description="YOLO benchmark — FPS/latency to CSV")
     parser.add_argument("--model",  default=str(ROOT / "models" / "yolo11n.pt"))
-    parser.add_argument("--source", default="0")
+    parser.add_argument("--source", default=str(find_camera()))
     parser.add_argument("--imgsz",  type=int,   default=320)
     parser.add_argument("--conf",   type=float, default=0.35)
     parser.add_argument("--frames", type=int,   default=300,

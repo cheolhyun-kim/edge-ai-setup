@@ -3,14 +3,12 @@
 #
 # 실행: python src/practice4-1.py
 # 종료: 창에서 q 키 입력
-#
-# 화면 왼쪽 위에 현재 FPS 가 실시간으로 표시됩니다.
-# 오늘은 카메라 FPS, Day03 에서는 YOLO 추론 후 FPS 를 비교합니다.
 
 import time
 import cv2
+from camera_utils import find_camera
 
-CAMERA_ID = 0  # 카메라 번호가 다르면 여기를 수정
+CAMERA_ID = find_camera()
 
 cap = cv2.VideoCapture(CAMERA_ID)
 

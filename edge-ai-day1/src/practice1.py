@@ -6,12 +6,11 @@
 #   - ret 가 True 로 출력
 #   - frame.shape 가 출력 (예: (480, 640, 3))
 #   - 에러 없이 종료
-#
-# 카메라 번호가 0 이 아니면 VideoCapture(1) 또는 VideoCapture(2) 로 변경
 
 import cv2
+from camera_utils import find_camera
 
-CAMERA_ID = 0  # 카메라 번호가 다르면 여기를 수정
+CAMERA_ID = find_camera()
 
 cap = cv2.VideoCapture(CAMERA_ID)
 

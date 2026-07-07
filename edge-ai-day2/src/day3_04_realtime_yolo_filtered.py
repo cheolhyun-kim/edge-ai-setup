@@ -16,6 +16,7 @@ from pathlib import Path
 
 import cv2
 from ultralytics import YOLO
+from camera_utils import find_camera
 
 ROOT = Path(__file__).parent.parent
 
@@ -23,7 +24,7 @@ ROOT = Path(__file__).parent.parent
 def parse_args():
     parser = argparse.ArgumentParser(description="Realtime YOLO — class filtering")
     parser.add_argument("--model",      default=str(ROOT / "models" / "yolo11n.pt"))
-    parser.add_argument("--source",     default="0")
+    parser.add_argument("--source",     default=str(find_camera()))
     parser.add_argument("--target",     default="person",
                         help="탐지할 클래스 이름 (예: cup, bottle, person, scissors)")
     parser.add_argument("--imgsz",      type=int,   default=320)

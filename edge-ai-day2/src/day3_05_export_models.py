@@ -17,6 +17,7 @@ import argparse
 from pathlib import Path
 
 from ultralytics import YOLO
+from camera_utils import find_camera
 
 ROOT       = Path(__file__).parent.parent
 MODELS_DIR = ROOT / "models"
@@ -41,7 +42,7 @@ def export_onnx(model_path: str, imgsz: int) -> str:
     # 동작 확인 (1프레임 predict)
     print("  [동작 확인] ONNX 모델 predict 1회 ...")
     onnx_model = YOLO(str(exported))
-    results    = onnx_model.predict(source=0, imgsz=imgsz, conf=0.35,
+    results    = onnx_model.predict(source=find_camera(), imgsz=imgsz, conf=0.35,
                                     show=False, verbose=False, save=False)
     print(f"  탐지 수: {len(results[0].boxes)}")
     print(f"  완료: {exported}")
@@ -59,7 +60,7 @@ def export_ncnn(model_path: str, imgsz: int) -> str:
     # 동작 확인
     print("  [동작 확인] NCNN 모델 predict 1회 ...")
     ncnn_model = YOLO(str(exported))
-    results    = ncnn_model.predict(source=0, imgsz=imgsz, conf=0.35,
+    results    = ncnn_model.predict(source=find_camera(), imgsz=imgsz, conf=0.35,
                                     show=False, verbose=False, save=False)
     print(f"  탐지 수: {len(results[0].boxes)}")
     print(f"  완료: {exported}/")

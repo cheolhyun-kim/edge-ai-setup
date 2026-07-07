@@ -35,6 +35,7 @@ ROOT = Path(__file__).parent.parent   # edge-ai-day2/
 # 같은 src/ 폴더의 모듈 import
 sys.path.insert(0, str(Path(__file__).parent))
 
+from camera_utils                 import find_camera
 from day5_01_intent_parser_ollama import parse_intent, CommandIntent
 from day5_02_detection_json       import boxes_to_detections, make_mock_detections
 from day5_03_find_object_tool     import (find_object, find_largest,
@@ -50,7 +51,7 @@ def parse_args():
     parser.add_argument("--model",  default="qwen2.5:0.5b")
     parser.add_argument("--yolo",   default=str(ROOT / "models" / "best.pt"),
                         help="YOLO 모델 경로 (없으면 yolo11n.pt 로 fallback)")
-    parser.add_argument("--camera", type=int,   default=0)
+    parser.add_argument("--camera", type=int,   default=find_camera())
     parser.add_argument("--imgsz",  type=int,   default=320)
     parser.add_argument("--conf",   type=float, default=0.35)
     parser.add_argument("--log",    default=str(ROOT / "outputs" / "demo_log.jsonl"))
