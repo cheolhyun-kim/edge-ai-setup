@@ -62,6 +62,10 @@ def main():
     cap.set(cv2.CAP_PROP_FRAME_WIDTH,  args.width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, args.height)
 
+    # 카메라 워밍업 (첫 몇 프레임은 검은 화면인 경우 있음)
+    for _ in range(10):
+        cap.read()
+
     print(f"클래스   : {class_name}")
     print(f"저장 폴더: {save_dir}")
     print(f"기존 이미지: {count}장 (이어서 저장)")
