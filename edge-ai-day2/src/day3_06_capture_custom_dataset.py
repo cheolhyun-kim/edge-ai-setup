@@ -80,28 +80,21 @@ def main():
             print("frame read failed")
             break
 
-        display = frame.copy()
-        cv2.putText(display, f"class: {class_name}  saved: {count}",
-                    (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-        cv2.putText(display, "SPACE: save  |  q: quit",
-                    (20, 78), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (200, 200, 200), 1)
+        cv2.imshow("capture", frame)
 
-        cv2.imshow(f"capture — {class_name}", display)
-        cv2.waitKey(1)  # VNC 렌더링을 위해 반드시 필요
-
-        key = cv2.waitKey(30) & 0xFF
+        key = cv2.waitKey(1) & 0xFF
 
         if key == ord("q"):
             break
         elif key == 32:                    # 스페이스바
             now = time.time()
-            if now - last_save < 0.3:     # 0.3초 이내 중복 저장 방지
+            if now - last_save < 0.3:
                 continue
             last_save = now
 
             filename = save_dir / f"{class_name}_{count:04d}.jpg"
             cv2.imwrite(str(filename), frame)
-            print(f"saved: {filename}")
+            print(f"saved: {filename}  (class: {class_name}  총: {count+1}장)")
             count += 1
 
     cap.release()
